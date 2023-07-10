@@ -34,8 +34,8 @@ export const Message = ({ role, content }) => {
           </div>
         )}
       </div>
-      <div className=" w-auto">
-        <ReactMarkdown>{content}</ReactMarkdown>
+      <div className="w-auto">
+        <div>{content}</div>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     }
 
     // Validate content
-    if (!content || typeof content !== "string" || content.length > 200) {
+    if (!content || typeof content !== "string" || content.length > 1000) {
       res.status(422).json({
         message: "Content is required and must be less than 200 characters",
       });
@@ -56,12 +56,17 @@ export default async function handler(req, res) {
       }
     );
 
+
     res.status(200).json({
       chat: {
         ...chat.value,
         _id: chat.value._id.toString(),
       },
     });
+
+    console.log('added to DB')
+    
+
   } catch (error) {
     res
       .status(500)

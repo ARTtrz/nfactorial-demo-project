@@ -1,0 +1,5 @@
+1. UX/UI design
+2. Image uploading (S3)
+3. Langchain connection
+4. Creating tests like choose the right answer and based on user's 
+result give some tips to impore his knowledge's based

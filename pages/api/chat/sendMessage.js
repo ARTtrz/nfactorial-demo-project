@@ -32,6 +32,7 @@ export default async function handler(req) {
     let chatMessages = [];
 
     if (chatId) {
+      console.log('starting adding messages')
       // add message to chat
       const response = await fetch(
         `${req.headers.get("origin")}/api/chat/addMessageToChat`,
@@ -48,6 +49,7 @@ export default async function handler(req) {
           }),
         }
       );
+      console.log(response.status, 'Reponse');
       const json = await response.json();
       chatMessages = json.chat.messages || [];
     } else {
@@ -64,6 +66,7 @@ export default async function handler(req) {
           }),
         }
       );
+      console.log(message, chatId, 'FROM CHATGPT')
 
       const json = await response.json();
 
@@ -78,7 +81,7 @@ export default async function handler(req) {
     for (let chatMessage of chatMessages) {
       const messageTokens = chatMessage.content.length / 4;
       usedTokens = usedTokens + messageTokens;
-      if (usedTokens <= 2000) {
+      if (usedTokens <= 1000) {
         messagesToInclude.push(chatMessage);
       } else {
         break;
@@ -102,28 +105,111 @@ export default async function handler(req) {
         }),
       },
       {
-        onBeforeStream: ({ emit }) => {
+        onBeforeStream: async ({ emit }) => {
+          console.log(chatId, 'Chat')
           if (newChatId) {
             emit(chatId, "newChatId");
           }
+
+          
         },
+        // onAfterStream:  async  ({ emit, fullContent }) => {
+        //   console.log(fullContent, 'content')
+        //   if (chatId) {
+            
+        //     // add message to chat
+        //     const response = await fetch(
+        //       `${req.headers.get("origin")}/api/chat/addMessageToChat`,
+        //       {
+        //         method: "POST",
+        //         headers: {
+        //           "content-type": "application/json",
+        //           cookie: req.headers.get("cookie"),
+        //         },
+        //         body: JSON.stringify({
+        //           chatId,
+        //           role: "assistant",
+        //           content: String(fullContent),
+        //         }),
+        //       }
+        //     );
+        //     console.log(response.status)
+
+        //   } else {
+        //     const response= await fetch(
+        //       `${req.headers.get("origin")}/api/chat/createNewChat`,
+        //       {
+        //         method: "POST",
+        //         headers: {
+        //           "content-type": "application/json",
+        //           cookie: req.headers.get("cookie"),
+        //         },
+        //         body: JSON.stringify({
+        //           message,
+        //         }),
+        //       }
+        //     );
+        //     console.log(fullContent, chatId, 'FROM CHATGPT')
+      
+        //   }
+          
+        // },
         onAfterStream: async ({ emit, fullContent }) => {
-          await fetch(
-            `${req.headers.get("origin")}/api/chat/addMessageToChat`,
-            {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-                cookie: req.headers.get("cookie"),
-              },
-              body: JSON.stringify({
-                chatId,
-                role: "assistant",
-                content: fullContent,
-              }),
+          console.log(fullContent, 'content', typeof(fullContent));
+          
+          try {
+            if (chatId) {
+              console.log('starting adding messages')
+              // Add message to existing chat
+              const response = await fetch(
+                `${req.headers.get("origin")}/api/chat/addMessageToChat`,
+                {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                    cookie: req.headers.get("cookie"),
+                  },
+                  body: JSON.stringify({
+                    chatId,
+                    role: "assistant",
+                    content: fullContent,
+                  }),
+                }
+              );
+              
+              if (!response.ok) {
+                throw new Error("Failed to add message to chat");
+              }
+              
+              console.log(response.status);
+            } else {
+              // Create a new chat
+              const response = await fetch(
+                `${req.headers.get("origin")}/api/chat/createNewChat`,
+                {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                    cookie: req.headers.get("cookie"),
+                  },
+                  body: JSON.stringify({
+                    message,
+                  }),
+                }
+              );
+              
+              if (!response.ok) {
+                throw new Error("Failed to create a new chat");
+              }
+              
+              console.log(fullContent, chatId, 'FROM CHATGPT');
             }
-          );
+          } catch (error) {
+            console.error("An error occurred:", error);
+          }
         },
+        
+        
       }
     );
 
