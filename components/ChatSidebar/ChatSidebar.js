@@ -6,7 +6,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import {GiPoliceOfficerHead} from 'react-icons/gi'
+import Image from "next/image";
+import Kaz from '../../public/kaz.png'
 export const ChatSidebar = ({ chatId }) => {
   const [chatList, setChatList] = useState([]);
 
@@ -25,13 +27,18 @@ export const ChatSidebar = ({ chatId }) => {
   }, [chatId]);
 
   return (
-    <aside className="bg-gray-900 text-white flex flex-col overflow-hidden transition-all duration-150 ease-in">
+    <aside className="bg-primary text-white flex flex-col overflow-hidden transition-all duration-150 ease-in">
+      <div className="flex items-center ml-2 justify-between">
+        <GiPoliceOfficerHead className="text-3xl" />
+        <h1 className="ml-2 my-3 text-2xl">Inspector AI</h1>
+        <Image src={Kaz} width={60} height={60} alt="kaz"/>
+      </div>
       <Link
         href="/chat"
-        className="side-menu-item bg-emerald-500 hover:bg-emerald-600"
+        className="side-menu-item bg-btn-color"
       >
         <FontAwesomeIcon icon={faPlus} />
-        <span>New Chat</span>
+        <span className="font-bold">Новый чат</span>
       </Link>
       <div className="flex-1 overflow-auto bg-gray-950">
         {chatList.map((chat) => (

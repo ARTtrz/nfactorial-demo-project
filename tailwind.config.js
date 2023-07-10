@@ -13,7 +13,13 @@ module.exports = {
       fontFamily: {
         body: "var(--font-outfit), sans-serif",
       },
-    },
+      colors: {
+        'primary': '#141627',
+        'btn-color': '#5841D9',
+        'chat': '#1C1F37',
+        'border': '#1C1E26'
+      }
+    }
   },
   plugins: [require("@tailwindcss/typography")],
 };

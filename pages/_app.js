@@ -16,7 +16,7 @@ function App({ Component, pageProps }) {
   return (
     <UserProvider>
       <Head>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/pol.jpeg" />
       </Head>
       <main className={`${outfit.variable} font-body`}>
         <Component {...pageProps} />

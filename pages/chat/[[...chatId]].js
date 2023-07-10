@@ -9,7 +9,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 import clientPromise from "lib/mongodb";
 import { ObjectId } from "mongodb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faRobot, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 export default function ChatPage({ chatId, title, messages = [] }) {
   const [incomingMessage, setIncomingMessage] = useState("");
@@ -109,23 +109,23 @@ export default function ChatPage({ chatId, title, messages = [] }) {
   return (
     <>
       <Head>
-        <title>New Chat</title>
+        <title>Новый чат</title>
       </Head>
 
       <div className="grid h-screen grid-cols-[260px_1fr]">
         <ChatSidebar chatId={chatId} />
-        <div className="flex flex-col bg-gray-700 overflow-hidden">
+        <div className="flex flex-col bg-primary overflow-hidden pt-10">
           <div className="flex-1 flex flex-col-reverse text-white overflow-y-scroll">
             {!allMessages.length && !incomingMessage && (
               <div className="m-auto justify-center flex items-center text-center">
                 <div>
                   {" "}
                   <FontAwesomeIcon
-                    icon={faRobot}
-                    className="text-6xl text-emerald-200"
+                    icon={faUserTie}
+                    className="text-6xl text-btn-color"
                   />
                   <h1 className="text-4xl font-bold text-white/50 mt-2">
-                    Ask me a question!
+                    Твой персональный инспектор ГИБДД
                   </h1>
                 </div>
               </div>
@@ -158,13 +158,13 @@ export default function ChatPage({ chatId, title, messages = [] }) {
                 <textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
-                  placeholder={generatingResponse ? "" : "Send a message..."}
-                  className="w-full resize-none rounded-md bg-gray-700 p-2 text-white focus:border-emerald-500 focus:bg-gray-600 focus:outline focus:outline-emerald-500"
+                  placeholder={generatingResponse ? "" : "Отправь сообщение..."}
+                  className="w-full resize-none rounded-md bg-gray-700 p-2 text-white focus:border-emerald-500 focus:bg-gray-600 focus:outline focus:outline-chat-btn"
                   name=""
                   id=""
                 ></textarea>
-                <button type="submit" className="btn">
-                  Send
+                <button type="submit" className="btn bg-btn-color hover:bg-primary">
+                  Отправить
                 </button>
               </fieldset>
             </form>
