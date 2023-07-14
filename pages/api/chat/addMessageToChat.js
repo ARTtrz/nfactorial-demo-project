@@ -23,9 +23,9 @@ export default async function handler(req, res) {
     }
 
     // Validate content
-    if (!content || typeof content !== "string" || content.length > 1000) {
+    if (!content || typeof content !== "string" || content.length > 10000) {
       res.status(422).json({
-        message: "Content is required and must be less than 200 characters",
+        message: "Content is required and must be less than 1000 characters",
       });
       return;
     }
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
         },
       },
       {
-        returnDocument: "after",
+        returnDocument: "acontentfter",
       }
     );
 
@@ -64,7 +64,7 @@ export default async function handler(req, res) {
       },
     });
 
-    console.log('added to DB')
+   
     
 
   } catch (error) {

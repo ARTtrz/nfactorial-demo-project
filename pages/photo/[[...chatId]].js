@@ -11,38 +11,30 @@ import { ObjectId } from "mongodb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import StandardMessageForm from "components/CustomMessageForms/StandardMessageForm";
-import { useUpload } from "../../components/CustomMessageForms/useUpload";
+import { useUpload } from "components/CustomMessageForms/useUpload";
+
 export default function ChatPage({ chatId, title, messages = [] }) {
   const [incomingMessage, setIncomingMessage] = useState("");
   const [messageText, setMessageText] = useState("");
+  
   const [newChatMessages, setNewChatMessages] = useState([]);
   const [generatingResponse, setGeneratingResponse] = useState(false);
   const [newChatId, setNewChatId] = useState(null);
   const [fullMessage, setFullMessage] = useState("");
   const [originalChatId, setOriginalChatId] = useState(chatId);
-  const [image, setImage] = useState(' ')
-
+  const {isLoading, uploadFile, filename} = useUpload()
   const router = useRouter();
 
   const routeHasChanged = chatId !== originalChatId;
 
-
-
-  const {isLoading, uploadFile, filename} = useUpload()
-
-
- 
-
   
+
   // When our route changes, we want to reset the new chat messages
   useEffect(() => {
     setNewChatMessages([]);
     setNewChatId(null);
   }, [chatId]);
 
-  useEffect(() => {
-    setImage(filename)
-  }, [filename])
 
   // Save the newly streamed message to new chat messages
   useEffect(() => {
@@ -57,7 +49,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
       ]);
       setFullMessage("");
     }
-  }, [generatingResponse, fullMessage, routeHasChanged]);
+  }, [generatingResponse, fullMessage, routeHasChanged, filename]);
 
   // When we get a new chat id, we want to redirect to that chat
   useEffect(() => {
@@ -76,79 +68,52 @@ export default function ChatPage({ chatId, title, messages = [] }) {
     setNewChatMessages((prev) => {
       const newChatMessages = [
         ...prev,
+        
         {
           _id: uuid(),
           role: "user",
-          content: image != ' '? image: messageText,
+          content: messageText,
         },
       ];
       return newChatMessages;
     });
 
     setMessageText("");
-    setImage(" ")
 
-    // проверка на url or not 
-    // only for urls
-    let response
-    if(image != " "){
-      // for image
-      response = await fetch(`/api/chat/azureMessage`, {
-        method: 'POST',
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          chatid: chatId,
-          imageurl: image
-        }),
-  
-      })
-    }
-    else{
-      console.log('text generating');
-      // for text
-      
-      response = await fetch(`/api/chat/sendMessage`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          chatId,
-          message: messageText
-        }),
-      });
-
-      console.log(response.body)
-    }
-
-   
+    const response = await fetch(`/api/chat/sendMessage`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        chatId,
+        message: messageText,
+      }),
+    });
 
     const data = response.body;
     if (!data) return;
 
-    
-    
     const reader = data.getReader();
     let content = "";
     await streamReader(reader, (message) => {
-      console.log(message, 'Message')
+     
       if (message.event === "newChatId") {
         setNewChatId(message.content);
       } else {
         setIncomingMessage((s) => `${s}${message.content}`);
         content = content + message.content;
       }
-      });
+    });
 
     setFullMessage(content);
     setIncomingMessage("");
     setGeneratingResponse(false);
   };
 
-  const handleChange = (e) => setMessageText(e.target.value) //set message text in the chat
-  //const handleImageChange = (text) => setMessageText(text)
+  // message text in the chat
+  const handleChange = (e) => setMessageText(e.target.value) 
+
   const allMessages = [...messages, ...newChatMessages];
 
   return (
@@ -203,7 +168,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
                 {/* <textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
-                  placeholder={generatingResponse ? "" : "Отправь сообщение..."}
+                  placeholder={generatAPI_URLingResponse ? "" : "Отправь сообщение..."}
                   className="w-full resize-none rounded-md bg-gray-700 p-2 text-white focus:border-emerald-500 focus:bg-gray-600 focus:outline focus:outline-chat-btn"
                   name=""
                   id=""
@@ -211,7 +176,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
                 <button type="submit" className="btn bg-btn-color hover:bg-primary">
                   Отправить
                 </button> */}
-                <StandardMessageForm uploadFile={uploadFile} filename={filename} chatId={chatId} value={messageText} handleSubmit={handleSubmit} onChange={handleChange}   />
+                <StandardMessageForm chatId={chatId} value={messageText} handleSubmit={handleSubmit} onChange={handleChange}   />
               </fieldset>
             </form>
           </footer>
@@ -265,3 +230,5 @@ export const getServerSideProps = async (ctx) => {
     props: {},
   };
 };
+
+

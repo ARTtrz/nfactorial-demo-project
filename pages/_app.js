@@ -4,7 +4,8 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Outfit } from "next/font/google";
-
+import '../styles/index.scss'
+import MainProvider from "../providers/MainProvider";
 config.autoAddCss = false;
 
 const outfit = Outfit({
@@ -18,9 +19,9 @@ function App({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/pol.jpeg" />
       </Head>
-      <main className={`${outfit.variable} font-body`}>
-        <Component {...pageProps} />
-      </main>
+      <MainProvider Component={Component}>
+        <Component {...pageProps}/>
+      </MainProvider>
     </UserProvider>
   );
 }

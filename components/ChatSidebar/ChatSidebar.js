@@ -19,7 +19,7 @@ export const ChatSidebar = ({ chatId }) => {
       });
 
       const json = await response.json();
-      console.log("chat list: ", json);
+      
       setChatList(json?.chats || []);
     };
 

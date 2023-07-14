@@ -36,6 +36,6 @@ export default async function handler(req, res) {
     res
       .status(500)
       .json({ message: "En error occurred when creating a new chat" });
-    console.log("error occurred in create new chat: ", error);
+  
   }
 }
