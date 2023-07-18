@@ -92,6 +92,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
     // only for urls
     let response
     if(image != " "){
+      console.log(image, chatId, 'params from chatId page')
       // for image
       response = await fetch(`/api/chat/azureMessage`, {
         method: 'POST',
@@ -104,6 +105,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
         }),
   
       })
+      console.log(response, "response from azure")
     }
     else{
       console.log('text generating');
@@ -120,17 +122,43 @@ export default function ChatPage({ chatId, title, messages = [] }) {
         }),
       });
 
-      console.log(response.body)
+      console.log(response.body, 'RESPONSE FROM TEXT')
     }
 
    
 
     const data = response.body;
-    if (!data) return;
+    if (!data) return;    // try {
+      //   if(chatid){
+      //     const output = await fetch(
+      //       `${req.headers.origin}/api/chat/addMessageToChat`,
+      //       {
+      //         method: "POST",
+      //         headers: {
+      //           "content-type": "application/json",
+      //           cookie: req.headers.cookie
+      //         },
+      //         body: JSON.stringify({
+      //           chatid,
+      //           role: "assistant",
+      //           content: response,
+      //         }),
+      //       }
+      //     );
+  
+      //     const data = await output.json();
+          
+      //     res.status(200).json({ message: "Success" });
+      //   }
+      // } catch (error) {
+      //   console.log(error)
+      //   res.status(500).json({ message: "Internal Server Error" });
+      // }
 
     
     
     const reader = data.getReader();
+    console.log(data, 'data')
     let content = "";
     await streamReader(reader, (message) => {
       console.log(message, 'Message')
@@ -236,6 +264,7 @@ export const getServerSideProps = async (ctx) => {
       };
     }
     const { user } = await getSession(ctx.req, ctx.res);
+  
     const client = await clientPromise;
     const db = client.db("ChattyPete");
     const chat = await db

@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/api/read/route.js", "pages/api/setup/setup_function.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -8,10 +8,6 @@ import '../styles/index.scss'
 import MainProvider from "../providers/MainProvider";
 config.autoAddCss = false;
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
 
 function App({ Component, pageProps }) {
   return (

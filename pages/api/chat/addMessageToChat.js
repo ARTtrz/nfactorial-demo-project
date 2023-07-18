@@ -3,6 +3,7 @@ import clientPromise from "lib/mongodb";
 import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
+  
   try {
     const { user } = await getSession(req, res);
     const client = await clientPromise;
@@ -10,6 +11,7 @@ export default async function handler(req, res) {
 
     const { chatId, role, content } = req.body;
 
+    console.log(content, 'Content from addMssage')
     // Validation
     // Validate chatId
     let objectId;

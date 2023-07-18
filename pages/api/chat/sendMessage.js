@@ -211,10 +211,17 @@ export const config = {
   runtime: "edge",
 };
 
+function getFullContentString() {
+  // You can return any JSON string you want here
+  return JSON.stringify({ key: "value", anotherKey: "anotherValue" });
+}
+
 export default async function handler(req) {
+  console.log(req.body, 'From text')
   try {
     const { chatId: chatIdFromParam, message } = await req.json();
 
+    console.log(message, 'Message')
     // validate message data
     if (!message || typeof message !== "string" || message.length > 200) {
       return new Response(
@@ -297,7 +304,19 @@ export default async function handler(req) {
 
     messagesToInclude.reverse();
 
+    console.log('origin main')
     const stream = await OpenAIEdgeStream(
+      // // "https://api.openai.com/v1/chat/completions",
+      // `${req.headers.get("origin")}/api/read/get_lang`,
+      // {
+      //   headers: {
+      //     "content-type": "application/json"
+      //   },
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     message
+      //   }),// should be a string
+      // },
       "https://api.openai.com/v1/chat/completions",
       {
         headers: {
@@ -321,8 +340,9 @@ export default async function handler(req) {
           
         },
         onAfterStream: async ({ emit, fullContent }) => {
+          console.log('start this shit')
           console.log(fullContent, 'content', typeof(fullContent));
-          
+        
           try {
             if (chatId) {
               console.log('starting adding messages')
@@ -338,8 +358,8 @@ export default async function handler(req) {
                   body: JSON.stringify({
                     chatId,
                     role: "assistant",
-                    content: fullContent,
-                  }),
+                    content: fullContent
+                    }),
                 }
               );
               

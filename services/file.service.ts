@@ -1,4 +1,4 @@
-import { axiosClassic } from "../api/interceptor"
+import { axiosClassic } from "api_helper/interceptor"
 
 export const FileService = {
 
