@@ -128,6 +128,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
    
 
     const data = response.body;
+    console.log(data, 'DATA')
     if (!data) return;    // try {
       //   if(chatid){
       //     const output = await fetch(
@@ -158,11 +159,12 @@ export default function ChatPage({ chatId, title, messages = [] }) {
     
     
     const reader = data.getReader();
-    console.log(data, 'data')
+    console.log(reader, 'reader')
     let content = "";
     await streamReader(reader, (message) => {
-      console.log(message, 'Message')
+      console.log('stream reader starting...')
       if (message.event === "newChatId") {
+        console.log('newchatId')
         setNewChatId(message.content);
       } else {
         setIncomingMessage((s) => `${s}${message.content}`);

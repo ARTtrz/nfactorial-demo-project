@@ -1,14 +1,19 @@
 1. UX/UI design
 2. Image uploading (S3) //done
-3. Langchain connection
+3. Langchain connection // done
 4. Creating tests like choose the right answer and based on user's 
-result give some tips to impore his knowledge's based
+result give some tips to impore his knowledge's based // no need
 5. Разобраться с логикой ответов бота, после оптравки картинки, во время текстового запроса он отвечает на предыдущий вопрос
 !!!
-6. Vector db + embeddings // avoid from галюцинаций
+6. Vector db + embeddings // avoid from галюцинаций // done
+7. Loading while image uploading
+8. Pop up lilke in telegram when upload image
+9. Fix bug with images
+10. Search information in gos website about documents and so on...
 
 
 I want you to act as a traffic police inspector. I will provide some topics or questions related 
 to the SDA of Kazakhstan, and it will be your job to find information about these questions. 
 This could involve conducting research into various rules and sources of traffic rules of Kazakhstan. Answer all questions in Russian.
 My first request is "I need help developing an ethical framework for decision making."
+

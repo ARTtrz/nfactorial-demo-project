@@ -16,7 +16,7 @@ export default function Home() {
 
   async function createIndexAndEmbeddings() {
     try {
-      const result = await fetch('/api/setup/setup_function', {
+      const result = await fetch('/api/setup/setup', {
         method: "POST"
       })
       console.log(result, "result")
@@ -50,7 +50,8 @@ export default function Home() {
                   Login
                 </Link>
 
-                {/* <button onClick={createIndexAndEmbeddings}>Create index and embeddings</button> */}
+                <button onClick={createIndexAndEmbeddings}>Create index and embeddings</button>
+                
                 <Link href="/api/auth/signup" className="btn">
                   Sign up
                 </Link>
@@ -64,6 +65,7 @@ export default function Home() {
 }
 
 export const getServerSideProps = async (ctx) => {
+  
   const session = await getSession(ctx.req, ctx.res);
   console.log(session)
   if (!!session) {
