@@ -13,7 +13,7 @@ function App({ Component, pageProps }) {
   return (
     <UserProvider>
       <Head>
-        <link rel="icon" href="/pol.jpeg" />
+        <link rel="icon" href="/pngegg.png" />
       </Head>
       <MainProvider Component={Component}>
         <Component {...pageProps}/>

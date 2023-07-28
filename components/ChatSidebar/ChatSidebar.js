@@ -29,7 +29,9 @@ export const ChatSidebar = ({ chatId }) => {
   return (
     <aside className="bg-primary text-white flex flex-col overflow-hidden transition-all duration-150 ease-in">
       <div className="flex items-center ml-2 justify-between">
-        <GiPoliceOfficerHead className="text-3xl" />
+        <Link href="/">
+          <GiPoliceOfficerHead className="text-3xl" />
+        </Link>
         <h1 className="ml-2 my-3 text-2xl">Inspector AI</h1>
         <Image src={Kaz} width={60} height={60} alt="kaz"/>
       </div>

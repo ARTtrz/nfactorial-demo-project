@@ -21,8 +21,8 @@ body,
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
-
+  padding: 0px;
+  background-color: #EBF8F8;;
   font-family: "Rubik", sans-serif;
 }
 
@@ -41,6 +41,7 @@ body,
   align-items: center;
   gap: 10px;
 }
+
 
 .dropzone {
   width: 30px !important;

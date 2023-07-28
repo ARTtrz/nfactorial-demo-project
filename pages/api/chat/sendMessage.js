@@ -6,11 +6,12 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { DynamicTool } from "langchain/tools";
 
-
+import {usePdd} from '../../../hooks/usePdd'
 
 export const config = {
   runtime: "edge",
 };
+
 
 function getFullContentString() {
   // You can return any JSON string you want here
@@ -19,7 +20,9 @@ function getFullContentString() {
 
 export default async function handler(req) {
   console.log(req.body, 'From text')
+  
   const messagesToInclude = [];
+ 
   try {
     const { chatId: chatIdFromParam, message: user_input } = await req.json();
 
@@ -50,6 +53,7 @@ export default async function handler(req) {
 
     if (chatId) {
       console.log('starting adding messages')
+      
       // add message to chat
       const response = await fetch(
         `${req.headers.get("origin")}/api/chat/addMessageToChat`,
@@ -143,6 +147,8 @@ export default async function handler(req) {
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
+  
+  
 
     const openai = new OpenAIApi(configuration);
     const pinecone = new PineconeClient()
@@ -174,13 +180,30 @@ export default async function handler(req) {
 
     const pdd_search = async (text_for_search) =>  {
       console.log(text_for_search, 'text');
-     
+      
+      const response = await fetch('http://localhost:8000/server/inspector/pdd', {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json",
+        },
+        
+        body: JSON.stringify({
+          input: text_for_search
+        })
+      })
+      console.log('done before answer')
 
-      return 'USE YOUR OWN KNOWLEDGE TO ANSWER THIS QUESTION';
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+
+      const textResponse = await response.text();
+      console.log(textResponse)
+      return textResponse
       
     }
 
-
+    
     
 
     messagesToInclude.push({

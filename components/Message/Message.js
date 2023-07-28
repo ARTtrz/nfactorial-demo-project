@@ -69,7 +69,9 @@ export const Message = ({ role, content }) => {
         />
       );
     } else {
-      return <div>{content}</div>;
+      return <div className="prose lg:prose-lg  prose-invert max-w-max">
+        <ReactMarkdown>{content}</ReactMarkdown>
+      </div>;
     }
   };
 

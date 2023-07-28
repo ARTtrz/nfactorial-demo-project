@@ -139,7 +139,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
     console.log('starting adding messages')
     // add message to chat
     const response = await fetch(
-      `${req.headers.get('origin')}/api/chat/addMessageToChat`,
+      `http://localhost:3000/api/chat/addMessageToChat`,
       {
         method: "POST",
         headers: {
@@ -158,7 +158,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
     chatMessages = json.chat.messages || [];
   } else {
     const response = await fetch(
-      `${req.headers.origin}/api/chat/addMessageToChat`,
+      `${req.headers.get("origin")}/api/chat/addMessageToChat`,
       {
         method: "POST",
         headers: {
@@ -170,9 +170,9 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
         }),
       }
     );
-    console.log(message, chatId, 'FROM CHATGPT')
+    
 
-    const json = await s.json();
+    const json = await response.json();
 
     chatId = json._id;
     newChatId = json._id;
@@ -318,6 +318,7 @@ export default async function handler(req, res) {
   try {
     
     const tag = await getTagsFromAzureVision(imageurl);
+    console.log(tag, 'TAG')
     const response = await generateResponseWithOpenAI(tag, imageurl, chatid, req, res);
   
     

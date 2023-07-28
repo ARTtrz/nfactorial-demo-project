@@ -17,7 +17,8 @@ module.exports = {
         'primary': '#141627',
         'btn-color': '#5841D9',
         'chat': '#1C1F37',
-        'border': '#1C1E26'
+        'border': '#1C1E26',
+        'logo': '#54b4f4'
       }
     }
   },
