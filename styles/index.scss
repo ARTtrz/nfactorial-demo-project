@@ -143,6 +143,7 @@ body,
 
 .message-form-preview {
   position: relative;
+  
 }
 
 .message-form-icon-x {
@@ -159,7 +160,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   gap: 8px;
 }
 
@@ -192,10 +193,11 @@ body,
   all: unset;
   position: absolute;
   top: 0;
+  color: #000;
   left: 0;
-  color: $tertiary-50 !important;
   z-index: 2 !important;
   width: 100% !important;
+  
 }
 
 .message-form-assist {
@@ -411,7 +413,7 @@ body,
 
 .ce-message-form-input {
   background-color: $primary-700 !important;
-  color: $tertiary-50 !important;
+
   font-family: "Rubik" !important;
   border: none !important;
 }

@@ -20,13 +20,10 @@ export default function Chatbot() {
         <title>Chatty Pete - Login or Signup</title>
       </Head>
 
-      <div className="flex min-h-screen w-full items-center justify-center bg-gray-800 text-center text-white">
+      <div className="flex min-h-screen w-full items-center justify-center bg-primary text-center text-gray-700">
         <div>
           <div>
-            <FontAwesomeIcon
-              icon={faRobot}
-              className="text-emerald-200 text-6xl mb-2"
-            />
+
           </div>
           <h1 className="text-4xl font-bold">Welcome to Inspector AI Bot</h1>
           <p className="text-lg mt-2">Log in with your account to continue</p>

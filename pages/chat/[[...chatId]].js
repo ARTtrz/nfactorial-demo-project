@@ -179,7 +179,10 @@ export default function ChatPage({ chatId, title, messages = [] }) {
 
   const handleChange = (e) => setMessageText(e.target.value) //set message text in the chat
   //const handleImageChange = (text) => setMessageText(text)
-  const allMessages = [...messages, ...newChatMessages];
+  const allMessages = [{
+    role: "assistant",
+    content: "Здравья желаю всем участникам дорожного движения! Придерживайтесь правил, уважайте друг друга, соблюдайте скоростной режим. Если вам что-то непонятно, то задавайте вопросы! "
+  }, ...messages, ...newChatMessages];
 
   return (
     <>
@@ -189,7 +192,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
 
       <div className="grid h-screen grid-cols-[260px_1fr]">
         <ChatSidebar chatId={chatId} />
-        <div className="flex flex-col bg-primary overflow-hidden pt-10">
+        <div className="flex flex-col bg-chat-bg overflow-hidden pt-10">
           <div className="flex-1 flex flex-col-reverse text-white overflow-y-scroll">
             {!allMessages.length && !incomingMessage && (
               <div className="m-auto justify-center flex items-center text-center">
@@ -227,7 +230,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
               </div>
             )}
           </div>
-          <footer className="bg-gray-800 p-10">
+          <footer className="bg-white text-white p-10">
             <form onSubmit={handleSubmit}>
               <fieldset className="flex gap-2" disabled={generatingResponse}>
                 {/* <textarea

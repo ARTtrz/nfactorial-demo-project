@@ -2,7 +2,7 @@ export default function Donation(){
     return(
         <>
             <span>
-                Если вы фанат Барсы, можно не донатить
+                донаты сюда: 87753302860 Дархан.А
             </span>
         </>
     )

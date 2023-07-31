@@ -4,11 +4,11 @@
 
 @layer components {
   .btn {
-    @apply rounded-md bg-emerald-500 px-4 py-2 text-white hover:bg-emerald-600 disabled:bg-emerald-300 transition-all duration-150 ease-in;
+    @apply rounded-md bg-logo px-4 py-2 text-white hover:bg-white hover:text-black disabled:bg-emerald-300 transition-all duration-150 ease-in;
   }
 
   .side-menu-item {
-    @apply m-2 p-2 flex items-center gap-4 rounded-md hover:bg-gray-800;
+    @apply m-2 p-2 flex items-center gap-4 rounded-md hover:bg-white hover:text-gray-700;
   }
 }
 

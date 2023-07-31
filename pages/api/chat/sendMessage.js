@@ -112,7 +112,7 @@ export default async function handler(req) {
       {
         name: 'answer_question',
         description:
-          'Call this function for most of questions related to car management and applying for a driving license in Kazakhstan',
+          'Call this function for most of questions related to car management, applying for a driving license in Kazakhstan',
         parameters: {
           type: 'object',
           properties: {
@@ -127,7 +127,7 @@ export default async function handler(req) {
       {
         name: 'pdd_search',
         description:
-          'Call this function to answe ONLY questions related to traffic rules the Republic of Kazakhstan',
+          'Call this function to answe ONLY questions related to fines for traffic violations in Kazakhstan and traffic rules the Republic of Kazakhstan ',
         parameters: {
           type: 'object',
           properties: {
@@ -168,9 +168,9 @@ export default async function handler(req) {
     const answer_question = async (user_input) => {
       const search = new GoogleCustomSearch({apiKey: process.env.GOOGLE_API_KEY, googleCSEId:  process.env.GOOGLE_CSE_ID});
       const tool = new DynamicTool({
-          name: "Answer questions related to traffic rules",
+          name: "Answer questions related to traffic rules only in Kazakhstan",
           description:
-            "Search information about how to apply for driver's license only in Kazakhstan and driving moments",
+            "Search information about how to apply for driver's license only in Kazakhstan, driving moments and fines for traffic violations in Kazakhstan",
           func: async () => await search._call(user_input)
         })
       const res =
@@ -181,7 +181,7 @@ export default async function handler(req) {
     const pdd_search = async (text_for_search) =>  {
       console.log(text_for_search, 'text');
       
-      const response = await fetch('http://localhost:8000/server/inspector/pdd', {
+      const response = await fetch('http://localhost:3000/server/inspector/pdd', {
         method: 'POST',
         headers: {
           "content-type": "application/json",

@@ -6,6 +6,7 @@ import {
 import Image from "next/image";
   import React, { useEffect, useState } from "react";
   import Dropzone from "react-dropzone";
+import Modal from "../UploadeModal/Modal";
   
   const MessageFormUI = ({
     setAttachment,
@@ -19,11 +20,12 @@ import Image from "next/image";
     uploadFile
   }) => {
     const [preview, setPreview] = useState("");
+    const [isOpen, setIsOpen] = useState(false)
     // console.log(filename, 'for message')
     
-    useEffect(() => {
-      setPreview(`${filename}`);
-    }, [filename])
+    // useEffect(() => {
+    //   setPreview(`${filename}`);
+    // }, [filename])
     
     return (
       
@@ -36,7 +38,8 @@ import Image from "next/image";
               src={filename}
               onLoad={() => URL.revokeObjectURL(preview)}
         /> */}
-        {preview != ' '  ? (
+        
+        {/* {preview != ' '  ? (
           <div className="message-form-preview">
             <Image
               width={40}
@@ -54,7 +57,7 @@ import Image from "next/image";
               }}
             />
           </div>
-        ): <></>}
+        ): <></>} */}
         <div className="message-form">
           <div className="message-form-input-container">
             
@@ -77,27 +80,13 @@ import Image from "next/image";
             )}
           </div>
           <div className="message-form-icons">
-            <Dropzone
-              acceptedFiles=".jpg,.jpeg,.png"
-              multiple={false}
-              noClick={true}
-              
-              onDrop={(acceptedFiles) => {
-                setAttachment(acceptedFiles[0]);
-                setPreview(filename);
-              }}
-            >
-              {({ getRootProps, getInputProps, open }) => (
-                <div {...getRootProps()} >
-                  <input {...getInputProps()} onChange={uploadFile} />
-                  <PaperClipIcon
-                    className="message-form-icon-clip"
-                    onClick={open}
 
-                  />
-                </div>
-              )}
-            </Dropzone>
+            <PaperClipIcon
+                className="message-form-icon-clip"
+                onClick={() => setIsOpen(!isOpen)}
+                  
+            />
+            <Modal uploadFile={uploadFile} handleSubmit={handleSubmit} filename={filename} isOpen={isOpen} setOpen={setIsOpen}/>
   
             <hr className="vertical-line" />
             <PaperAirplaneIcon

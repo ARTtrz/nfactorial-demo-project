@@ -47,6 +47,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { GiPoliceOfficerHead } from "react-icons/gi";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import PatrolIcon from '../../public/chasepin.png'
 
 export const Message = ({ role, content }) => {
   const { user } = useUser();
@@ -69,7 +70,7 @@ export const Message = ({ role, content }) => {
         />
       );
     } else {
-      return <div className="prose lg:prose-lg  prose-invert max-w-max">
+      return <div className="prose lg:prose-lg text-black  prose-invert max-w-max">
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>;
     }
@@ -78,7 +79,7 @@ export const Message = ({ role, content }) => {
   return (
     <div
       className={`grid grid-cols-[35px_1fr] gap-5 p-5 m-5 rounded-xl border-2 border-border  ${
-        role === "assistant" ? "bg-chat border-0" : role === "notice" ? "bg-red-600" : ""
+        role === "assistant" ? "bg-primary text-black border-0" : role === "notice" ? "bg-red-600" : "bg-white"
       }`}
     >
       <div>
@@ -92,8 +93,8 @@ export const Message = ({ role, content }) => {
           />
         )}
         {role === "assistant" && (
-          <div className="flex items-center justify-center w-[30px] h-[30px] rounded-sm shadow-md shadow-black/50 bg-gray-800">
-            <FontAwesomeIcon icon={faUserTie} className="text-emerald-200" />
+          <div className="flex items-center justify-center w-[35px] h-[35px] rounded-sm shadow-md shadow-black/50 bg-transparent">
+            <Image src={PatrolIcon} width={50} height={20} alt="chase"/>
           </div>
         )}
       </div>
