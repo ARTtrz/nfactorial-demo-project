@@ -158,7 +158,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
     chatMessages = json.chat.messages || [];
   } else {
     const response = await fetch(
-      `${req.headers.get("origin")}/api/chat/addMessageToChat`,
+      `http://localhost:3000/api/chat/addMessageToChat`,
       {
         method: "POST",
         headers: {
