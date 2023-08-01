@@ -163,7 +163,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          cookie: req.headers.cookie,
+          cookie: req.headers.get("cookie"),
         },
         body: JSON.stringify({
           prompt,
