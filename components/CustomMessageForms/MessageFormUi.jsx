@@ -27,6 +27,12 @@ import Modal from "../UploadeModal/Modal";
     //   setPreview(`${filename}`);
     // }, [filename])
     
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent new line from being added in a textarea (if using textarea)
+        handleSubmit()
+      }
+    };
     return (
       
       <div className="message-form-container">
@@ -74,6 +80,7 @@ import Modal from "../UploadeModal/Modal";
                 value={value}
                 className="message-form-assist"
                 type="text"
+                onKeyDown={handleKeyPress}
                 
                 // value={`${message} ${appendText}`}
               />
