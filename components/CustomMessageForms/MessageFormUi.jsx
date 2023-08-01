@@ -72,7 +72,7 @@ import Modal from "../UploadeModal/Modal";
               type="text"
               value={value}
               onChange={handleChange}
-              onKeyDown={handleKeyDown}
+              onKeyDown={handleKeyPress}
               placeholder="Отправь сообщение..."
             />
             {appendText && (
