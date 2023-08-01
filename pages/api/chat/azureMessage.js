@@ -140,7 +140,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
     console.log(req.headers.get("cookie"), 'Cookie')
     // add message to chat
     const response = await fetch(
-      `http://localhost:3000/api/chat/addMessageToChat`,
+      `${req.headers.get("origin")}/api/chat/addMessageToChat`,
       {
         method: "POST",
         headers: {
@@ -159,7 +159,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
     chatMessages = json.chat.messages || [];
   } else {
     const response = await fetch(
-      `http://localhost:3000/api/chat/addMessageToChat`,
+      `${req.headers.get("origin")}/api/chat/addMessageToChat`,
       {
         method: "POST",
         headers: {
@@ -259,7 +259,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
                 method: "POST",
                 headers: {
                   "content-type": "application/json",
-                  cookie: req.headers.cookie,
+                  cookie: req.headers.get("cookie"),
                 },
                 body: JSON.stringify({
                   message,
