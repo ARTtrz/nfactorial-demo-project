@@ -137,6 +137,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
 
   if (chatId) {
     console.log('starting adding messages')
+    console.log(req.headers.cookie, 'Cookie')
     // add message to chat
     const response = await fetch(
       `http://localhost:3000/api/chat/addMessageToChat`,
@@ -144,7 +145,7 @@ async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          cookie: req.headers.get("cookie"),
+          cookie: req.headers.cookie,
         },
         body: JSON.stringify({
           chatId,
