@@ -150,19 +150,19 @@ export default async function handler(req) {
   
   
 
-    const openai = new OpenAIApi(configuration);
-    const pinecone = new PineconeClient()
-    console.log('Pinecone client')
-    await pinecone.init({
-        environment: process.env.PINECONE_ENV,
-        apiKey: process.env.PINECONE_API_KEY
-    })
-    const embedding = new OpenAIEmbeddings({
-      openAIApiKey: process.env.OPENAI_API_KEY,
-    });
+    // const openai = new OpenAIApi(configuration);
+    // const pinecone = new PineconeClient()
+    // console.log('Pinecone client')
+    // await pinecone.init({
+    //     environment: process.env.PINECONE_ENV,
+    //     apiKey: process.env.PINECONE_API_KEY
+    // })
+    // const embedding = new OpenAIEmbeddings({
+    //   openAIApiKey: process.env.OPENAI_API_KEY,
+    // });
   // const index = pinecone.Index('langchain')
   // const pineconeStore = new PineconeStore(embedding, { pineconeIndex: index, namespace: 'langchain' })
-  //   console.log('Pinecone set up')
+  // console.log('Pinecone set up')
 
 
     const answer_question = async (user_input) => {
@@ -181,7 +181,7 @@ export default async function handler(req) {
     const pdd_search = async (text_for_search) =>  {
       console.log(text_for_search, 'text');
       
-      const response = await fetch('http://localhost:3000/server/inspector/pdd', {
+      const response = await fetch('https://patrol-backend-service.onrender.com/server/inspector/pdd', {
         method: 'POST',
         headers: {
           "content-type": "application/json",
@@ -197,6 +197,7 @@ export default async function handler(req) {
         throw new Error('Network response was not ok.');
       }
 
+      console.log(response)
       const textResponse = await response.text();
       console.log(textResponse)
       return textResponse
