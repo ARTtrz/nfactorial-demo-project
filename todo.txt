@@ -10,6 +10,10 @@ result give some tips to impore his knowledge's based // no need
 8. Pop up lilke in telegram when upload image
 9. Fix bug with images
 10. Search information in gos website about documents and so on...
+11. Добавить больше штрафов таких как проезд на красный свет, уступание дороги пешеходам и тд
+12. Собрать датасет из знаков как можно больше
+13. С велоиспедистами тоже договориться 
+14. Пусть он отпрвляет ссылки на материал
 
 
 I want you to act as a traffic police inspector. I will provide some topics or questions related 

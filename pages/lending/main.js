@@ -1,5 +1,5 @@
 import ImageSlider from "./slider/slider"
-import MainImage from '../../public/paw.png'
+import MainImage from '../../public/alibek.png'
 import ManImage from '../../public/user.png'
 import SuccessImage from '../../public/success.png'
 import Image from "next/image"
@@ -16,16 +16,16 @@ export default function Main(){
                         <h1 className="uppercase text-3xl font-medium ">
                             Устал ездить без прав?
                         </h1>
-                        <span className="text-lg max-w-[100%] ">
+                        <span className="text-xl max-w-[100%] ">
                         Добро пожаловать в будущее ГИБДД! Наш чат-бот на искусственном интеллекте упростит взаимодействие с правоохранительными органами. Получайте быстрые ответы о правилах, штрафах и регистрации. Удобство и эффективность - в одном приложении!
                         </span>
-                        <button type="button" onClick={() => router.push('/chatbot')} className="text-white   bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-4 text-center mr-2 mb-2">Перейти</button>
+                        <button type="button" onClick={() => router.push('/chatbot')} className="text-white   bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-lg  px-10 py-4  text-center mr-2 mb-2">Перейти</button>
 
                     </div>
-                    <Image src={MainImage} alt="image" width={850} />
+                    <Image src={MainImage} alt="image" width={950} />
                 </div>
             </div>
-            <div className=" px-10 pt-3  pb-3 max-w-[1600px] justify-between m-auto gap-5 bg-white mt-5 flex items-center">
+            <div className=" px-10 mt-10 py-4 max-w-[1600px] justify-between m-auto gap-5 bg-white flex items-center">
                 <div className="flex items-center gap-5 ">
                     <Image src={ManImage} width={60} height={60} alt="man"/> 
                     <span className="uppercase text-xl font-medium ">

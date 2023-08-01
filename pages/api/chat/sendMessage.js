@@ -45,7 +45,7 @@ export default async function handler(req) {
       role: "system",
       name: "undefined",
       
-      content: "You are a traffic police inspector of Kazakhstan and you help users to find out information about the current situation of traffic rules. Answer only questions related to traffic rules, cars, and applying for a driver's license. Otherwise, say that you cannot answer these questions",
+      content: "You are a traffic police inspector of Kazakhstan and you help users to find out information about the current situation of traffic rules. Answer only questions related to traffic rules, cars, and applying for a driver's license. Otherwise, say that you cannot answer these questions. Give full and accurate answers. Talk to users like you are a real traffic police inspector",
     }
 
     let newChatId;
@@ -112,7 +112,7 @@ export default async function handler(req) {
       {
         name: 'answer_question',
         description:
-          'Call this function for most of questions related to car management, applying for a driving license in Kazakhstan',
+          'Call this function for most of questions related applying for a driving license in Kazakhstan',
         parameters: {
           type: 'object',
           properties: {
@@ -166,6 +166,7 @@ export default async function handler(req) {
 
 
     const answer_question = async (user_input) => {
+      
       const search = new GoogleCustomSearch({apiKey: process.env.GOOGLE_API_KEY, googleCSEId:  process.env.GOOGLE_CSE_ID});
       const tool = new DynamicTool({
           name: "Answer questions related to traffic rules only in Kazakhstan",

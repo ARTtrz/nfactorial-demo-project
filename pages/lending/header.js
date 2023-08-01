@@ -8,7 +8,7 @@ export default function Header(){
     return (
         <>
             <div className="flex justify-between items-center px-5 pt-5 pb-3 max-w-[1600px] m-auto ">
-                <div>
+                <div className="flex flex-col items-center">
                     <Link href="/">
                         <Image
                             src={LogoImage}
@@ -17,6 +17,9 @@ export default function Header(){
                             height={160}
                         />
                     </Link>
+                    {/* <span className="text-lg text-gray-800 font-medium">
+                        BETA
+                    </span> */}
                 </div>
                 <nav>
                     <ul className="flex items-center justify-between gap-10 uppercase font-medium text-lg">
