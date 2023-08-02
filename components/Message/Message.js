@@ -47,7 +47,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { GiPoliceOfficerHead } from "react-icons/gi";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import PatrolIcon from '../../public/chasepin.png'
+import PatrolIcon from '../../public/chase1.png'
 
 export const Message = ({ role, content }) => {
   const { user } = useUser();
@@ -93,7 +93,7 @@ export const Message = ({ role, content }) => {
           />
         )}
         {role === "assistant" && (
-          <div className="flex items-center justify-center w-[35px] h-[35px] rounded-sm shadow-md shadow-black/50 bg-transparent">
+          <div className="flex items-center justify-center bg-white w-[35px] h-[35px] rounded-sm shadow-md shadow-black/50 bg-transparent">
             <Image src={PatrolIcon} width={50} height={20} alt="chase"/>
           </div>
         )}
