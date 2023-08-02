@@ -235,7 +235,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
               </div>
             )}
           </div>
-          <footer className="bg-white text-white p-10">
+          <footer className="bg-white text-white p-5 ">
             <form onSubmit={handleSubmit}>
               <fieldset className="flex gap-2" disabled={generatingResponse}>
                 {/* <textarea
