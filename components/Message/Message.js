@@ -70,7 +70,7 @@ export const Message = ({ role, content }) => {
         />
       );
     } else {
-      return <div className="prose lg:prose-lg text-black  prose-invert max-w-max">
+      return <div className="prose lg:prose-lg text-black  sm:text-sm sm:w-auto prose-invert max-w-max">
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>;
     }

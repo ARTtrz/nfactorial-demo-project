@@ -29,7 +29,7 @@ export const ChatSidebar = ({ chatId }) => {
   }, [chatId]);
 
   return (
-    <aside className="bg-primary sm:text-sm text-black flex flex-col overflow-hidden transition-all duration-150 ease-in">
+    <aside className="bg-primary sm:hidden text-black flex flex-col overflow-hidden transition-all duration-150 ease-in">
       <div className="flex items-center ml-2 justify-between">
         {/* <Link href="/" className="m-auto p-3">
           <Image width={200} height={30} alt="logo" src={Logo}/>

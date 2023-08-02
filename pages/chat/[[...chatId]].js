@@ -190,10 +190,13 @@ export default function ChatPage({ chatId, title, messages = [] }) {
         <title>Новый чат</title>
       </Head>
 
-      <div className="grid h-screen grid-cols-[260px_1fr]">
+      <div className="grid h-screen smm:grid-cols-[260px_1fr]">
         <ChatSidebar chatId={chatId} />
-        <div className="flex flex-col bg-chat-bg overflow-hidden pt-10">
+        
+        <div className="flex flex-col bg-chat-bg overflow-hidden smm:pt-10 ">
+          {/* <p className="text-black px-6 pt-5">Open</p> */}
           <div className="flex-1 flex flex-col-reverse text-white overflow-y-scroll">
+           
             {!allMessages.length && !incomingMessage && (
               <div className="m-auto justify-center flex items-center text-center">
                 <div>
@@ -209,7 +212,9 @@ export default function ChatPage({ chatId, title, messages = [] }) {
               </div>
             )}
             {!!allMessages.length && (
+              
               <div className="mb-auto">
+                
                 {allMessages.map((message) => (
                   <Message
                     key={message._id}

@@ -9,13 +9,14 @@ import { useRouter } from "next/router"
 export default function Main(){
     const router = useRouter()
     return(
-        <main className="mt-5" >
+        <main className="mt-6" >
             <div className=" px-10 pt-16  pb-3 max-w-[1600px] m-auto bg-white rounded-lg">
                 <div className="flex items-center justify-between">
                     <div className="flex flex-col items-start justify-between gap-5" >
                         <h1 className="uppercase text-3xl font-medium ">
                             Устал ездить без прав?
                         </h1>
+
                         <span className="text-xl max-w-[100%] ">
                         Добро пожаловать в будущее ГИБДД! Наш чат-бот на искусственном интеллекте упростит взаимодействие с правоохранительными органами. Получайте быстрые ответы о правилах, штрафах и регистрации. Удобство и эффективность - в одном приложении!
                         </span>
