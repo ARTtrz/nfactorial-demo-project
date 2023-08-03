@@ -7,11 +7,12 @@ export default function Header(){
     
     return (
         <>
-            <div className="flex justify-between items-center px-5 pt-5 pb-3 max-w-[1600px] m-auto ">
-                <div className="flex flex-col items-center">
+            <div className="flex justify-between items-center px-5 sm:px-2 pt-5 pb-3 max-w-[1600px] m-auto sm:w-full ">
+                <div className="">
                     <Link href="/">
                         <Image
                             src={LogoImage}
+                            className="sm:w-28"
                             alt="logo"
                             width={160}
                             height={160}
@@ -22,7 +23,7 @@ export default function Header(){
                     </span> */}
                 </div>
                 <nav>
-                    <ul className="flex items-center justify-between gap-10 uppercase font-medium text-lg">
+                    <ul className="flex items-center justify-between gap-10 sm:gap-2  uppercase font-medium text-lg sm:text-sm xs:text-xs">
 
                         <li className="relative inline-block group">
                             
@@ -59,7 +60,7 @@ export default function Header(){
                         <li className="relative inline-block group">
                             
                             <Link href="/donation" className="hover:text-blue-500 transition-all ease-in-out duration-300">
-                                Донаты автору
+                                Донаты 
                             </Link>
                             
                             <div className="absolute bottom-0 left-0 w-full h-0.5  bg-blue-500 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
