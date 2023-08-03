@@ -174,15 +174,39 @@ body,
   padding: 20px 30px !important;
   background: none;
   width: 82vw;
+  margin: 0 auto;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 650px) {
     .message-form{
         padding: 10px 20px !important;
         width: 91vw;
         margin: 0 auto;
     }
 }
+@media screen and (min-width: 650px) and (max-width: 1449px) {
+  .message-form{
+      padding: 10px 20px !important;
+      width: 75vw;
+      margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1250px) and (max-width: 1619px) {
+  .message-form{
+      padding: 10px 20px !important;
+      width: 77vw;
+      margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1620px) {
+  .message-form{
+      padding: 10px 20px !important;
+      width: 84vw;
+      margin: 0 auto;
+  }
+}
+
+
 
 .message-form-preview-image {
   width: 40px;
@@ -204,7 +228,7 @@ body,
   color: #000;
   left: 0;
   z-index: 2 !important;
-  width: 100% !important;
+  width: 100%;
   
 }
 

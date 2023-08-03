@@ -237,7 +237,7 @@ export default function ChatPage({ chatId, title, messages = [] }) {
           </div>
           <footer className="bg-white text-white p-5 ">
             <form onSubmit={handleSubmit}>
-              <fieldset className="flex gap-2" disabled={generatingResponse}>
+              <fieldset className="flex gap-2 " disabled={generatingResponse}>
                 {/* <textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}

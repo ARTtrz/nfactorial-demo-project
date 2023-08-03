@@ -66,7 +66,7 @@ import Modal from "../UploadeModal/Modal";
         ): <></>} */}
 
         <div className="message-form">
-          <div className="message-form-input-container">
+          <div className="message-form-input-container w-full">
             
             <input
               className="message-form-input"
