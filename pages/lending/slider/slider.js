@@ -12,7 +12,7 @@
 const ImageSlider = () => {
   return (
     <>
-      <div>Slisdassdaasdasdsder</div>
+      <div>Slider</div>
     </>
   );
 }
