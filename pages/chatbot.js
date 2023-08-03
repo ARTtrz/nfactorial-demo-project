@@ -25,19 +25,19 @@ export default function Chatbot() {
           <div>
 
           </div>
-          <h1 className="text-4xl font-bold">Welcome to Inspector AI Bot</h1>
-          <p className="text-lg mt-2">Log in with your account to continue</p>
+          <h1 className="text-4xl xs:text-xl font-bold">Добро пожаловать в PatrolAI</h1>
+          <p className="text-lg xs:text-sm mt-2">Зарегистрируйтесь или ввойдите чтобы продолжить</p>
           <div className="mt-4 flex justify-center gap-3">
             {!user && (
               <>
                 <Link href="/api/auth/login" className="btn">
-                  Login
+                  Войти
                 </Link>
 
 
                 
                 <Link href="/api/auth/signup" className="btn">
-                  Sign up
+                  Зарегистрироваться
                 </Link>
               </>
             )}
