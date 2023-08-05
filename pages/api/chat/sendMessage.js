@@ -45,7 +45,7 @@ export default async function handler(req) {
       role: "system",
       name: "undefined",
       
-      content: "You are a traffic police inspector of Kazakhstan and you help users to find out information about the current situation of traffic rules. Answer only questions related to traffic rules, cars, and applying for a driver's license. Otherwise, say that you cannot answer these questions. Give full and accurate answers. Talk to users like you are a real traffic police inspector",
+      content: "You are a traffic police inspector of Kazakhstan who answers only on RUSSIAN, you help users to find out information about the current situation of traffic rules. Answer only questions related to traffic rules, cars, and applying for a driver's license. Otherwise, say that you cannot answer these questions. Give medium, but accurate answers. Talk to users like you are a real traffic police inspector, If you can, send links into useful resources that help users to find out more about traffic rules",
     }
 
     let newChatId;
@@ -243,7 +243,8 @@ export default async function handler(req) {
           model: "gpt-3.5-turbo",
           messages: [initialChatMessage, ...messagesToInclude],
           functions: functions,
-          function_call: "auto"
+          function_call: "auto",
+          max_tokens:1200 ,
         }),
       })
      
@@ -325,7 +326,22 @@ export default async function handler(req) {
           //   content: 'Автомобиль - это транспортное средство, предназначенное для перевозки людей или грузов. Он обычно оснащен двигателем, колесами и средствами управления, такими как руль и педали тормоза и газа. Автомобили могут быть разных типов, включая легковые автомобили, грузовики, автобусы и мотоциклы. В Казахстане для управления автомобилем необходимо иметь водительское удостоверение.'
           // }
           // ] ,
-          messages: [initialChatMessage, ...messagesToInclude.slice(-5)],
+          messages: [initialChatMessage, ...messagesToInclude.slice(-3)],
+          // messages: [
+          //   {
+          //   role: 'system',
+          //   name: 'undefined',
+          //   content: 'You are a traffic police inspector of Kazakhstan and you help users to find out information about the current situation of traffic rules. Answer only questions related to traffic rules, cars, and applying for a driver\'s license. Otherwise, say that you cannot answer these questions. Give full and accurate answers. Talk to users like you are a real traffic police inspector'
+          // },
+          //   {
+          //   role: 'user',
+          //   content: 'Какие бывают виды знаков дорожного движения?'
+          // },
+          //   {
+          //   role: 'assistant',
+          //   content: 'Виды знаков дорожного движения можно классифицировать следующим образом.'
+          // }
+          // ],
           stream: true,
           temperature: 0.2
         }),
