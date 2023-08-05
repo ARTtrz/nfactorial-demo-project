@@ -111,7 +111,11 @@ async function getTagsFromAzureVision(imageUrl) {
     console.log(data, 'data')
     if (response.ok) {
         console.log(data.predictions[0].tagName, 'RES from azure');
-      return data.predictions[0].tagName
+        if(data.predictions[0].probability*100 > 90)
+          return data.predictions[0].tagName
+        else{
+          return 'не найден'
+        }
     } else {
       throw new Error(`Failed to get tags from Azure Vision API: ${data.message}`);
     }
@@ -119,7 +123,15 @@ async function getTagsFromAzureVision(imageUrl) {
 
 async function generateResponseWithOpenAI(tag, image, chatId, req, res) {
   const openaiApiKey = process.env.OPENAI_API_KEY
-  const prompt = `Что означает ${tag} ?`;
+  let prompt = ''
+  if(tag == 'не найден'){
+    prompt = "Write: \"Извините, я не знаю этот знак\""
+  }
+  else{
+    prompt = `Что означает ${tag} ?`;
+  }
+   
+  console.log(prompt, 'Prompt')
   // const initialChatMessage = {
   //   role: "system",
   //   content:

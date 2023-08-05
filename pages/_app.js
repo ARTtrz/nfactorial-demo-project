@@ -5,6 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Outfit } from "next/font/google";
 import '../styles/index.scss'
+import { Analytics } from '@vercel/analytics/react';
 import MainProvider from "../providers/MainProvider";
 config.autoAddCss = false;
 
@@ -17,6 +18,7 @@ function App({ Component, pageProps }) {
       </Head>
       <MainProvider Component={Component}>
         <Component {...pageProps}/>
+        <Analytics/>
       </MainProvider>
     </UserProvider>
   );
