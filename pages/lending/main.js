@@ -30,7 +30,7 @@ export default function Main(){
                 <div className="flex items-center gap-5 sm:flex-col sm:gap-2 ">
                     <Image src={ManImage} width={60} height={60} alt="man" className="sm:w-2/5"/> 
                     <span className="uppercase text-xl font-medium  sm:text-xs ">
-                            1000+ пользователей в РК
+                            250+ пользователей в РК
                     </span>
                 </div>
                 <div className="flex items-center gap-5 sm:flex-col sm:gap-2 ">
