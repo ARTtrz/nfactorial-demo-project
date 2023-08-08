@@ -6,8 +6,8 @@ import RunningLine from "./line/runningLine";
 import Line from "./line/line";
 export default function About(){
     return (
-        <>
-        <div className="max-w-[1600px] m-auto mt-8">
+        <div className="xs:hidden">
+        <div className="max-w-[1600px] m-auto mt-8 ">
             <h1 className="text-2xl uppercase font-medium">О проекте</h1>
             <div className="bg-white w-auto mt-5 p-10 rounded-xl ">
                 <div className="text-2xl font-medium">
@@ -35,6 +35,6 @@ export default function About(){
            
         </div>
         <Line/>
-        </>
+        </div>
     )
 }
